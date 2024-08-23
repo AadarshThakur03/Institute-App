@@ -1,0 +1,22 @@
+# Ignore node_modules directory (common in Node.js projects)
+node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore compiled output (common in various languages)
+/dist
+/build
+*.class
+*.pyc
+
+# Ignore environment variable files
+.env
+
+# Ignore IDE or editor config files
+.vscode/
+*.sublime-workspace
