@@ -1,18 +1,15 @@
-import "./index.css"
+import "./Home.css"
 import React from "react";
 import { Link } from "react-router-dom";
-
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-
-
-// components
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 
 
 export default function Home() {
+
   return (
     <>
-     <Navbar transparent /> 
+     <Navbar /> 
       <main>
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
           <div
@@ -113,7 +110,7 @@ export default function Home() {
               <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
                 <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
                   
-                <i class="fa-solid fa-computer"></i>
+                <i className="fa-solid fa-computer"></i>
                 </div>
                 <h3 className="text-3xl mb-2 font-semibold leading-normal">
                 Take the Test monthly
@@ -220,7 +217,7 @@ export default function Home() {
                       <div className="flex items-center">
                         <div>
                           <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-lightBlue-600 bg-lightBlue-200 mr-3">
-                          <i class="fa-solid fa-chalkboard-user"></i>
+                          <i className="fa-solid fa-chalkboard-user"></i>
                           </span>
                         </div>
                         <div>
@@ -302,7 +299,7 @@ export default function Home() {
             <div className="flex flex-wrap mt-12 justify-center">
               <div className="w-full lg:w-3/12 px-4 text-center">
                 <div className="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
-                <i class="fa-solid fa-user-group"></i>
+                <i className="fa-solid fa-user-group"></i>
                 </div>
                 <h6 className="text-xl mt-5 font-semibold text-white">
                 User-Friendly Interface
@@ -385,12 +382,12 @@ export default function Home() {
                       >
                         Message
                       </label>
-                      <textarea
+                      {/* <textarea
                         rows="4"
                         cols="80"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                         placeholder="Type a message..."
-                      />
+                      /> */}
                     </div>
                     <div className="text-center mt-6">
                       <button
@@ -407,7 +404,8 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer/>
+      {/* <Footer /> */}
     </>
   );
 }
