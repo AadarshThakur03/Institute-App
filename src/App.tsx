@@ -1,14 +1,19 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./Pages/Home/Home";
+// App.tsx
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './Pages/Home/Home';
+import Dashboard from './Pages/Dashboard/Dashboard';
 
 const App: React.FC = () => {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        {/* Add more routes here as needed */}
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} /> {/* Default route */}
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="home1" element={<Home />} />
+          {/* Define other routes that should be rendered inside the Dashboard */}
+        </Route>
+      </Routes>
     </Router>
   );
 };
