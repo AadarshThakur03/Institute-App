@@ -1,55 +1,61 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Sidebar.css';
+import menuItems from './menuItems.json';
 
 const Sidebar: React.FC = () => {
-    // State to manage visibility of submenu
-    const [showSubMenu, setShowSubMenu] = useState(false);
+    const [activeMenu, setActiveMenu] = useState<string | null>(null);
+    const navigate = useNavigate();
 
-    // Toggle function to show/hide submenu
-    const toggleSubMenu = () => {
-        setShowSubMenu(!showSubMenu);
+    const handleMenuClick = (path: string, hasSubmenu: boolean) => {
+        if (hasSubmenu) {
+            setActiveMenu(activeMenu === path ? null : path);
+        } else {
+            navigate(`${path}`);
+        }
+    };
+
+    const handleSubmenuClick = (path: string) => {
+        navigate(path);
     };
 
     return (
         <div className="sidebar">
-            <div className="logo">COREUI</div>
+            <div className="logo">ACADEMY EXAM</div>
             <ul className="sidebar-menu">
-                <li className="menu-item">
-                    <i className="fas fa-tachometer-alt sidebar-icon"></i>
-                    <span className="menu-text">Dashboard</span>
-                </li>
-                <li className="menu-item">
-                    <i className="fas fa-palette sidebar-icon"></i>
-                    <span className="menu-text">Colors</span>
-                </li>
-                <li className="menu-item">
-                    <i className="fas fa-font sidebar-icon"></i>
-                    <span className="menu-text">Typography</span>
-                </li>
-                <li className="menu-item collapsible-menu" onClick={toggleSubMenu}>
-                    <i className="fas fa-wrench sidebar-icon"></i>
-                    <span className="menu-text">Components</span>
-                    <i className={`fas ${showSubMenu ? 'fa-chevron-up' : 'fa-chevron-down'} toggle-icon`}></i>
-                </li>
-                {showSubMenu && (
-                    <ul className="submenu">
-                        <li className="submenu-item">Base</li>
-                        <li className="submenu-item">Buttons</li>
-                        <li className="submenu-item">Charts</li>
-                        <li className="submenu-item">Forms</li>
-                        <li className="submenu-item">Icons</li>
-                        <li className="submenu-item">Notifications</li>
-                        <li className="submenu-item">Widgets</li>
-                    </ul>
-                )}
-                <li className="menu-item">
-                    <i className="fas fa-bell sidebar-icon"></i>
-                    <span className="menu-text">Notifications</span>
-                </li>
-                <li className="menu-item">
-                    <i className="fas fa-th sidebar-icon"></i>
-                    <span className="menu-text">Widgets</span>
-                </li>
+                {menuItems.map((item, index) => (
+                    <React.Fragment key={index}>
+                        <li
+                            className={`menu-item ${item.submenu ? 'collapsible-menu' : ''}`}
+                            onClick={() => handleMenuClick(item.path, !!item.submenu)}
+                        >
+                            <i className={`${item.icon} sidebar-icon`}></i>
+                            <span className="menu-text">{item.name}</span>
+                            {item.submenu && (
+                                <i
+                                    className={`fas ${
+                                        activeMenu === item.path ? 'fa-chevron-up' : 'fa-chevron-down'
+                                    } toggle-icon`}
+                                    style={{ transform: activeMenu === item.path ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                                ></i>
+                            )}
+                        </li>
+                        {item.submenu && (
+                            <ul className={`submenu ${activeMenu === item.path ? 'visible' : 'hidden'}`}>
+                                {item.submenu.map((subItem, subIndex) => (
+                                    <li
+                                        key={subIndex}
+                                        className="menu-item submenu-item"
+                                        onClick={() => handleSubmenuClick(subItem.path)}
+                                    >
+                                        {/* <i className={`${subItem.icon} sidebar-icon`}></i> */}
+                                        <span className="menu-text">{subItem.name}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </React.Fragment>
+                ))}
             </ul>
             <div className="sidebar-footer">
                 <img src="path_to_profile_image.jpg" alt="Profile" />

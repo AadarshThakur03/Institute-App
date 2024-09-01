@@ -1,10 +1,9 @@
+// Dashboard.tsx
 import React from 'react';
-
-// import { Outlet } from 'react-router-dom';
-import './Dashboard.css';
-import Home from '../Home/Home';
+import { Outlet } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Topbar from '../../components/Topbar/Topbar';
+import './Dashboard.css';
 
 const Dashboard: React.FC = () => {
   return (
@@ -12,9 +11,9 @@ const Dashboard: React.FC = () => {
       <Topbar />
       <div className="dashboard-content">
         <Sidebar />
-        {/* <div className="main-content">
-          <Home />
-        </div> */}
+        <div className="main-content">
+          <Outlet /> {/* This will render the nested routes */}
+        </div>
       </div>
     </div>
   );
