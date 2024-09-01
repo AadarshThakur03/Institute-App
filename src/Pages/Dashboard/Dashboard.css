@@ -28,6 +28,7 @@
   }
   
   .main-content {
+    margin-top: 60px;
     margin-left: 250px; /* Same width as sidebar */
     width: calc(100% - 250px); /* Adjust for sidebar */
     padding: 20px;
